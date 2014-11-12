@@ -24,8 +24,10 @@ function update_deb_in_project {
         mv ../${OBS_PACKAGE}*.dsc ${OBS_PROJECT_DIR}
 }
 
-function update_rmp_in_project {
-        mv rpm/${OBS_PACKAGE}* ${OBS_PROJECT_DIR}
+function update_rpm_in_project {
+        if [ -d "rpm" ]; then
+                mv rpm/${OBS_PACKAGE}* ${OBS_PROJECT_DIR}
+        fi
 }
 
 create_source_package
