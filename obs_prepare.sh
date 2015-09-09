@@ -13,7 +13,7 @@ function create_source_package {
 
 function prepare_project {
         echo -e "[general]\napiurl = https://api.opensuse.org\n[https://api.opensuse.org]\nuser = ${OBS_USERNAME}\npass = ${OBS_PASSWORD}\n" > ~/.oscrc
-        osc co ${OBS_HOME}:${OBS_PROJECT}:${OBS_SUBPROJECT}/${OBS_PACKAGE}
+        osc co ${OBS_HOME}:${OBS_PROJECT}:${OBS_MAJOR_VERSION}:${OBS_MINOR_VERSION}:${OBS_MAINTENANCE_VERSION}/${OBS_PACKAGE}
         rm -f ${OBS_PROJECT_DIR}/*
 }
 
