@@ -4,8 +4,13 @@ MAINTAINER Szilárd Pfeiffer "szilard.pfeiffer@balasys.hu"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get  update \
- && apt-get install -y --no-install-recommends git-core openssh-client \
+RUN apt-get update
+
+RUN apt-get install -y python3-pip python3-setuptools swig python3-dev libssl-dev \
+ && pip3 install m2crypto \
+ && apt-get purge -y python3-pip python3-setuptools build-essential swig python3-dev libssl-dev
+
+RUN apt-get install -y --no-install-recommends git-core openssh-client \
  && apt-get install -y --no-install-recommends build-essential ca-certificates \
  && apt-get install -y --no-install-recommends g++-8 automake autoconf autoconf-archive libtool \
  && apt-get install -y --no-install-recommends devscripts equivs \
