@@ -10,7 +10,8 @@ RUN apt-get install -y python3-pip python3-setuptools swig python3-dev libssl-de
  && pip3 install m2crypto \
  && apt-get purge -y python3-pip python3-setuptools build-essential swig python3-dev libssl-dev
 
-RUN apt-get install -y --no-install-recommends git-core openssh-client \
+RUN apt-get install -y --no-install-recommends wget \
+ && apt-get install -y --no-install-recommends git-core openssh-client \
  && apt-get install -y --no-install-recommends build-essential ca-certificates \
  && apt-get install -y --no-install-recommends g++-8 automake autoconf autoconf-archive libtool \
  && apt-get install -y --no-install-recommends devscripts equivs \
@@ -19,12 +20,10 @@ RUN apt-get install -y --no-install-recommends git-core openssh-client \
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8 \
  && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8
 
-RUN apt-get install -y --no-install-recommends wget \
- && wget -q -O - "http://download.opensuse.org/repositories/openSUSE:Tools/xUbuntu_19.10/Release.key" | apt-key add - \
+RUN wget -q -O - "http://download.opensuse.org/repositories/openSUSE:Tools/xUbuntu_19.10/Release.key" | apt-key add - \
  && echo "deb [trusted=yes] http://download.opensuse.org/repositories/openSUSE:/Tools/xUbuntu_19.10/ /" >/etc/apt/sources.list.d/obs.list \
  && apt-get update \
- && apt-get install -y --no-install-recommends osc \
- && apt-get purge -y wget
+ && apt-get install -y --no-install-recommends osc
 
 RUN apt-get autoremove -y \
  && apt-get clean \
